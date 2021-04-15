@@ -1,10 +1,14 @@
-function hideString(str, fdone) {
-    process.nextTick(() => {
-        fdone(str.replace(/[a-zA-z]/g, "*"));
-    } );
+function fdelay(seconds, callback) {
+    setTimeout(callback, seconds*1000);
 }
 
-hideString("Hello World", (hidden) => { 
-    console.log(hidden);
-  });
-console.log("end");
+console.log("starting delays");
+fdelay(2, () => {
+    console.log("two seconds");
+    fdelay(1, () => {
+        console.log("another (third) second");
+        fdelay(1, () => {
+            console.log("again another (fourth) second");
+        });
+    });
+});
