@@ -1,5 +1,7 @@
 function hideString(str, fdone) {
-    fdone(str.replace(/[a-zA-z]/g, "*"));
+    process.nextTick(() => {
+        fdone(str.replace(/[a-zA-z]/g, "*"));
+    } );
 }
 
 hideString("Hello World", (hidden) => { 
